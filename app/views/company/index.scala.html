@@ -1,0 +1,29 @@
+@(companies: Seq[Company])(implicit tab: String)
+
+@main {
+
+  <form method="get" action="@routes.CompanyController.createCompany">
+    <button type="submit" class="btn btn-default btn-md">
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
+    </button>
+  </form>
+
+  @if(companies.nonEmpty) {
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+
+    @for(company <- companies) {
+      <tr>
+        <td><a href="@routes.CompanyController.details(company.id)">@company.name</a></td>
+        <td>
+          <form method="post" action="@routes.CompanyController.delete(company.id)">
+            <button class="btn btn-link" type="submit"><i class="icon-trash"></i> Delete </button>
+          </form>
+      </tr>
+    }
+  </table>
+  }
+}

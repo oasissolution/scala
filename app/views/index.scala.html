@@ -1,0 +1,34 @@
+@(employees: Seq[Details])(implicit flash: Flash, tab: String)
+
+@main {
+
+  <form method="get" action="@routes.Application.createEmployee">
+    <button type="submit" class="btn btn-default btn-md">
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
+    </button>
+  </form>
+
+  @if(employees.nonEmpty) {
+
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Company</th>
+        <th></th>
+      </tr>
+
+    @for(employee <- employees) {
+      <tr>
+        <td><a href="@routes.Application.details(employee.id)">@employee.name</a></td>
+        <td>@employee.position</td>
+        <td>@employee.company</td>
+        <td>
+          <form method="post" action="@routes.Application.delete(employee.id)">
+            <button class="btn btn-link" type="submit"><i class="icon-trash"></i> Delete </button>
+          </form>
+      </tr>
+    }
+    </table>
+  }
+}

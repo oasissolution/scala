@@ -1,0 +1,32 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+# Employees
+GET     /employee/new               controllers.Application.createEmployee
+POST    /employee                   controllers.Application.insert
+POST    /employee/:id               controllers.Application.update(id: Int)
+POST    /employee/:id/delete        controllers.Application.delete(id: Int)
+GET     /employee/:id               controllers.Application.details(id: Int)
+
+# Positions
+GET     /positions                  controllers.PositionController.list
+GET     /positions/new              controllers.PositionController.createPosition
+POST    /positions                  controllers.PositionController.insert
+POST    /positions/:id              controllers.PositionController.update(id: Int)
+POST    /positions/:id/delete       controllers.PositionController.delete(id: Int)
+GET     /positions/:id              controllers.PositionController.details(id: Int)
+
+# Companies
+GET     /companies                  controllers.CompanyController.list
+GET     /companies/new              controllers.CompanyController.createCompany
+POST    /companies                  controllers.CompanyController.insert
+POST    /companies/:id              controllers.CompanyController.update(id: Int)
+POST    /companies/:id/delete       controllers.CompanyController.delete(id: Int)
+GET     /companies/:id              controllers.CompanyController.details(id: Int)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
